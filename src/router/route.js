@@ -29,7 +29,7 @@ export default [
     path: '/',
     component: () =>
       import(
-        /* webpackChunkName: "layout" */ '../components/layouts/basicLayout'
+        /* webpackChunkName: "layout" */ '../components/layouts/basicLayout.vue'
       ),
     children: [
       {
@@ -37,16 +37,25 @@ export default [
         redirect: 'dashboard/analysis'
       },
       {
-        path: '/dashboard',
+        path: 'dashboard',
         name: 'dashboard',
         component: { render: h => h('router-view') },
         children: [
           {
-            path: 'dashboard/analysis',
-            name: 'dashboard'
+            path: 'analysis',
+            name: 'analysis',
+            component: () =>
+              import(
+                /* webpackChunkName: "dashboard" */ '../views/dashboard/analysis'
+              )
           }
         ]
       }
     ]
+  },
+  {
+    path: '/form',
+    name: '/form',
+    component: { render: h => h('router-view') }
   }
 ]
